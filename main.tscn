@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvdmtdj5dadml"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_6sgp6"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_6sgp6")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 460.0
+offset_top = 99.0
+offset_right = 727.0
+offset_bottom = 249.0
+text = "Play"
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 461.0
+offset_top = 333.0
+offset_right = 728.0
+offset_bottom = 483.0
+tooltip_text = "This is the button to exit"
+text = "Exit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
