@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvdmtdj5dadml"]
+[gd_scene load_steps=3 format=3 uid="uid://cvdmtdj5dadml"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6sgp6"]
+[ext_resource type="PackedScene" uid="uid://dhn2oqsk82kco" path="res://BackGroundWold/back_ground_wold.tscn" id="2_v6aul"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6sgp6")
@@ -19,6 +20,8 @@ offset_right = 728.0
 offset_bottom = 483.0
 tooltip_text = "This is the button to exit"
 text = "Exit"
+
+[node name="BackGroundWold" parent="." instance=ExtResource("2_v6aul")]
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
