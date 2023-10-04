@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m1ak0b7l7k2u"]
+[gd_scene load_steps=10 format=3 uid="uid://m1ak0b7l7k2u"]
 
 [ext_resource type="Texture2D" uid="uid://dy7fgmltelqvr" path="res://Assets/Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_arwtp"]
 [ext_resource type="PackedScene" uid="uid://bebj70gpdq72j" path="res://Player/player.tscn" id="1_p83wi"]
@@ -407,6 +407,14 @@ texture = ExtResource("1_arwtp")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_hw5cv")
 
+[sub_resource type="GDScript" id="GDScript_41eq4"]
+script/source = "extends Label
+
+@onready var player = $\"../../Player/Player\"
+func _process(delta):
+	text = \"HP: \" + str(Game.Gold)
+"
+
 [node name="World" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -451,3 +459,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "HP: "
 script = ExtResource("6_064d2")
+
+[node name="Gold" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "HP: "
+script = SubResource("GDScript_41eq4")
