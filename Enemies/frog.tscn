@@ -118,13 +118,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3e0xf"]
-radius = 98.0459
+radius = 602.12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si02d"]
-size = Vector2(16, 13)
+size = Vector2(17, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpyrg"]
-size = Vector2(25, 12.5)
+size = Vector2(25, 9)
 
 [node name="Frog" type="CharacterBody2D"]
 script = ExtResource("1_tbya8")
@@ -148,16 +148,16 @@ shape = SubResource("CircleShape2D_3e0xf")
 [node name="Death" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
-position = Vector2(0, -1.5)
+position = Vector2(0.5, -2.5)
 shape = SubResource("RectangleShape2D_si02d")
 
 [node name="PlayerDamage" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamage"]
-position = Vector2(0.5, 1.75)
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_jpyrg")
 
 [connection signal="body_entered" from="PlayerDetectot" to="." method="_on_player_detectot_body_entered"]
 [connection signal="body_exited" from="PlayerDetectot" to="." method="_on_player_detectot_body_exited"]
 [connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
-[connection signal="body_exited" from="PlayerDamage" to="." method="_on_player_damage_body_exited"]
+[connection signal="body_entered" from="PlayerDamage" to="." method="_on_player_damage_body_entered"]

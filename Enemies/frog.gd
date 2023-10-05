@@ -38,15 +38,19 @@ func _on_player_detectot_body_exited(body):
 
 func _on_death_body_entered(body):
 	if body.name == "Player":
-		death()
+		deathFrog()
 
-
-func _on_player_damage_body_exited(body):
-	if body.name == "Player":
-		body.health -= 3
-		death()
 	
-func death():
+func deathFrog():
+	Game.Gold += 5
+	Utilitis.saveGame()
 	anim.play("Death")
 	await anim.animation_finished
 	self.queue_free()
+
+
+func _on_player_damage_body_entered(body):
+	if body.name == "Player":
+		print("Entro")
+		Game.PlayerHP -= 5
+		deathFrog()
