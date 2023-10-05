@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://m1ak0b7l7k2u"]
+[gd_scene load_steps=12 format=3 uid="uid://m1ak0b7l7k2u"]
 
 [ext_resource type="Texture2D" uid="uid://dy7fgmltelqvr" path="res://Assets/Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_arwtp"]
 [ext_resource type="PackedScene" uid="uid://bebj70gpdq72j" path="res://Player/player.tscn" id="1_p83wi"]
@@ -415,6 +415,19 @@ func _process(delta):
 	text = \"Gold: \" + str(Game.Gold)
 "
 
+[sub_resource type="GDScript" id="GDScript_5xr4r"]
+script/source = "extends Node2D
+
+var cherry = preload(\"res://Collectables/Cherry.tscn\")
+
+func _on_timer_timeout():
+	var cherryTemp = cherry.instantiate()
+	var rng = RandomNumberGenerator.new()
+	var ranint = rng.randi_range(10, 360)
+	cherryTemp.position = Vector2(ranint, 360)	
+	$Node2D.add_child(cherryTemp)
+"
+
 [node name="World" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -472,11 +485,21 @@ theme_override_font_sizes/font_size = 20
 text = "Gold: "
 script = SubResource("GDScript_oyvjv")
 
-[node name="Cherry" parent="." instance=ExtResource("7_7ii3f")]
+[node name="Collectables" type="Node2D" parent="."]
+script = SubResource("GDScript_5xr4r")
+
+[node name="Cherry" parent="Collectables" instance=ExtResource("7_7ii3f")]
 position = Vector2(664, 291)
 
-[node name="Cherry2" parent="." instance=ExtResource("7_7ii3f")]
+[node name="Cherry2" parent="Collectables" instance=ExtResource("7_7ii3f")]
 position = Vector2(730, 290)
 
-[node name="Cherry3" parent="." instance=ExtResource("7_7ii3f")]
+[node name="Cherry3" parent="Collectables" instance=ExtResource("7_7ii3f")]
 position = Vector2(892, 318)
+
+[node name="Timer" type="Timer" parent="Collectables"]
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="Collectables"]
+
+[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
