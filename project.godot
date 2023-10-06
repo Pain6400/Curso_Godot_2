@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Game="*res://Global/Game.gd"
 Utilitis="*res://Global/Utilitis.gd"
 
+[dotnet]
+
+project/assembly_name="Curso Godot 2"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
